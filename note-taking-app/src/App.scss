@@ -1,0 +1,15 @@
+.appWrapper {
+  min-height: 100vh;
+  background: rgb(236, 240, 243);
+  padding: 0 ;
+  display: grid;
+  grid-template-rows: 60px 12fr;
+  grid-template-columns: 1fr 10fr;
+  grid-template-areas: 
+  "h  h " 
+  " m c ";
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  letter-spacing: 2px;
+  
+}
