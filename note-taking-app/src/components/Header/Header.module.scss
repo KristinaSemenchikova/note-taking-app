@@ -1,0 +1,20 @@
+.appHeader {
+ grid-area: h;
+ display: flex;
+ justify-content: space-between;
+ padding: 5px 10px;
+}
+.appHeader div {
+    display: flex;
+    align-items: center; 
+}
+.appHeader a {
+    text-decoration: none;
+    padding: 5px;
+    font-size: larger;
+    font-weight: bold;
+    color: #FD6FFF
+}
+.appHeader a:active{
+    color: #7D4CDB
+}

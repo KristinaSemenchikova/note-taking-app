@@ -1,14 +1,16 @@
 import React from "react";
+import { Route, Switch, withRouter } from 'react-router-dom';
 import style from "./App.scss";
-import AddNote from "./components/AddNote/AddNote";
-import Menu from './components/Menu/Menu';
-import Note from "./components/Note/Note";
+import Header from "./components/Header/Header"
+import NotesPageContainer from './components/NotesPage/NotesPageContainer';
+
 function App() {
   return (
     <div className= {style.appWrapper}>
-      <Menu/>
-      <Note/>
-      <AddNote />
+      <Header/>
+      <Switch>
+      <Route path='/myNotes' render={() => <NotesPageContainer />} />
+      </Switch>    
     </div>
   );
 }
