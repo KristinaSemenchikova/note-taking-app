@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import style from "./UsersNotes.module.scss";
 import { FormEdit, FormClose } from "grommet-icons";
-import { Button } from "grommet";
-import AddNote from "../AddNote/AddNote";
+import { Button, TextInput } from "grommet";
 
 const UsersNotes = ({
   allUsersNotes,
-  deleteNote,
-  onChange,
-  addNewNote,
-  onClick,
-  placeholder
+  deleteNote
 }) => {
   const [isNoteEditing, edit] = useState(false);
   const [editNote, onEditNote] = useState({
@@ -42,17 +37,15 @@ const UsersNotes = ({
   };
   let notesItems = allUsersNotes.map(item =>
     isNoteEditing ? (
-      <div className={style.edit} key={item.id}>
-        <AddNote
-          onChange={onNoteEditing}
-          addNewNote={addNewNote}
-          onClick={onClick}
-          placeholder={placeholder}
-          noteTitle={editNote.title}
-          noteText={editNote.text}
-        />
+        <div className={style.edit} key={item.id}>
+        <div>
+          <TextInput>{item.title}</TextInput>
+          <Button onClick={onDelete} data-id={item.id} icon={<FormClose />} />
+        </div>
+        <div>{item.text}</div>
         <Button onClick={onEdit} icon={<FormClose />} data-id={item.id}/>
       </div>
+       
     ) : (
       <div className={style.noteItem} key={item.id}>
         <div>
