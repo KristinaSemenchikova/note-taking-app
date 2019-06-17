@@ -1,8 +1,9 @@
 import React from "react";
-import style from "./Header.module.scss";
-import { Notes, Logout } from "grommet-icons";
-import { Heading} from "grommet";
 import { NavLink } from "react-router-dom";
+import style from "./Header.module.scss";
+import { Notes, Logout , UserSettings} from "grommet-icons";
+import { Heading} from "grommet";
+
 
 const Header = () => {
   let color = "#0fc5fc";
@@ -10,9 +11,8 @@ const Header = () => {
   return (
     <header className={style.appHeader}>
       <div>
-        <Notes size="large" color={color} />
-        <NavLink to="myNotes">My notes</NavLink>
-        <NavLink to="settings">Settings</NavLink>
+        <NavLink to="myNotes"><Notes size="large" color={color} /></NavLink>
+        <NavLink to="settings"><UserSettings size="large" color={color} /></NavLink>
       </div>
       <Heading margin="none" color={color}>
         Taking notes

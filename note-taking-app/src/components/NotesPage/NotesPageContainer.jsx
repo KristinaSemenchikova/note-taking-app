@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {allUsersNotes} from '../../redux/notes-reducer';
+import {allUsersNotes, addNewNote, deleteNote} from '../../redux/notes-reducer';
 import NotesPage from './NotesPage';
 
-const NotesPageContainer = ({allUsersNotes}) => {
+const NotesPageContainer = ({allUsersNotes, addNewNote, deleteNote}) => {
   return (
     <NotesPage
     allUsersNotes = {allUsersNotes}
+    addNewNote =  {addNewNote}
+    deleteNote = {deleteNote}
     />
   );
 };
@@ -16,4 +18,4 @@ const mapStateToProps = state => {
     allUsersNotes : allUsersNotes(state)
   }
 };
-export default connect(mapStateToProps,null)(NotesPageContainer) ;
+export default connect(mapStateToProps,{addNewNote,deleteNote}) (NotesPageContainer);
