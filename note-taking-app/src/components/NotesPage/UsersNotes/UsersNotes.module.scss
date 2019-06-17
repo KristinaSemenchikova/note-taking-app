@@ -1,6 +1,8 @@
 .usersNotes {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
     padding: 20px;
 }
 

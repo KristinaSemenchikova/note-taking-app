@@ -15,7 +15,7 @@ const NotesPage = ({ allUsersNotes, addNewNote , deleteNote}) => {
       <AddNoteButton 
       onClick = {newNote}/>
       {add && <AddNote 
-      onClick = {addNewNote} />}
+      addNewNote = {addNewNote} />}
       <UsersNotes 
       allUsersNotes={allUsersNotes}
       deleteNote = {deleteNote}
