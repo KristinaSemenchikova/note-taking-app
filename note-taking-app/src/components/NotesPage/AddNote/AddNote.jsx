@@ -4,7 +4,7 @@ import { TextArea, Button, TextInput } from "grommet";
 import { Edit} from "grommet-icons";
 import { guid } from "../../../redux/notes-reducer";
 
-const AddNote = ({addNewNote}) => {
+const AddNote = ({save}) => {
   const [noteTitle, addTitle] = useState("");
   const [noteText, addText] = useState("");
   const [placeholder, validate] = useState('Note text');
@@ -29,8 +29,8 @@ const AddNote = ({addNewNote}) => {
   let saveNote = () => {
     validateField();
     if (noteText) {
-      let note = { id: guid(), title: noteTitle, text: noteText };
-      addNewNote(note);
+      let note = { title: noteTitle, text: noteText };
+      save(note);
       addTitle('');
       addText('');
     }

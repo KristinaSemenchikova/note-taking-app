@@ -20,23 +20,31 @@ export const editNote = note => ({
 });
 
 const notesReducer = (state = initialState, action) => {
+  debugger
   switch (action.type) {
     case ADD_NOTE:
-      return { ...state, usersNotes: [...state.usersNotes, action.note] };
+      let id = guid();
+      let note = {
+        id,
+        ...action.note
+      }
+      return { ...state, usersNotes: [...state.usersNotes, note] };
     case DELETE_NOTE:
       let newState = { ...state, usersNotes: [...state.usersNotes] };
       let notes = newState.usersNotes.filter(
         note => note.id !== action.noteID
       );
       return { newState, usersNotes: notes };
-    // case EDIT_NOTE:
-    //   let newState = { ...state, usersNotes: [...state.usersNotes] };
-    //   let note = newState.usersNotes.find(note => note.id == action.note.id);
-    //   let editedNote = {
-    //     ...note,
-    //     t
-    //   };
-    //   return { newState, usersNotes: notes };
+    case EDIT_NOTE:
+      let  copy = { ...state, usersNotes: [...state.usersNotes] };
+      let editedNote = copy.usersNotes.find(note => note.id == action.note.id);
+      if(action.note.text) {
+        editedNote.text = action.note.text;
+      }
+      if(action.note.title){
+        editedNote.title = action.note.title;
+      }
+      return copy;
     default:
       return state;
   }

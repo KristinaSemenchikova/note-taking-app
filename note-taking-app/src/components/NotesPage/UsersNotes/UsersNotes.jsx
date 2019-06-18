@@ -1,34 +1,50 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import style from "./UsersNotes.module.scss";
 import { FormEdit, FormClose } from "grommet-icons";
-import { Button, TextInput , TextArea } from "grommet";
+import { Button } from "grommet";
+import AddNote from "../AddNote/AddNote";
 
-const UsersNotes = ({  allUsersNotes,  deleteNote}) => {
-  let inputRef = useRef(null);
-  let textAreaRef = useRef(null);
-
+const UsersNotes = ({ allUsersNotes, deleteNote , editNote}) => {
+  const [isOpen, openModal] = useState(false);
+  const [editingNote, setEditingNote] = useState(null);
+  let toggleModal  = () => {
+    openModal(!isOpen);
+  }
   let onDelete = e => {
     let id = e.currentTarget.dataset.id;
     deleteNote(id);
   };
-
-  let onEdit = () => {
-    inputRef.current.style.display = 'block';
-    textAreaRef.current.style.display = 'block';
+  let onEditNote = e => {
+   toggleModal();
+    setEditingNote({id : e.currentTarget.id,
+      title : e.currentTarget.dataset.title})
   };
-  let notesItems = allUsersNotes.map(item =>(<div className={style.noteItem} key={item.id}>
-        <div>
-          <Button onClick={onEdit} data-id={item.id} icon={<FormEdit />} />
-          <span>{item.title}</span>
-          <Button onClick={onDelete} data-id={item.id} icon={<FormClose />} />
-          <TextInput style = {{display: 'none'}} name = 'Text' ref = {inputRef}/>      
-        </div>
-        <div>{item.text}</div>
-        <TextArea style = {{display: 'none'}} ref= {textAreaRef} name = "Text" resize = {false}/>
+  let editNoteItem = (note) => {
+    let changedNote = {
+      id: editingNote.id,
+      ...note
+    } 
+    editNote(changedNote);
+  }
+
+  let notesItems = allUsersNotes.map(item => (
+    <div className={style.noteItem} key={item.id}>
+      <div>
+        <Button onClick={onEditNote} id={item.id} data-title={item.title} icon={<FormEdit />} />
+        <span>{item.title}</span>
+        <Button onClick={onDelete} data-id={item.id} icon={<FormClose />} />
       </div>
-    )
-  );
-  return <div className={style.usersNotes}>{notesItems}</div>;
+      <div>{item.text}</div>
+    </div>
+  ));
+  return <div className={style.usersNotes}>
+    {isOpen ? <div className = {style.edit}>
+      <span> Now you are editing note "{editingNote.title}" 
+       <Button onClick = {toggleModal} icon={<FormClose />} />
+       </span>
+      <AddNote save = {editNoteItem}/> 
+        </div>: notesItems}  
+  </div>;
 };
 
 export default UsersNotes;
