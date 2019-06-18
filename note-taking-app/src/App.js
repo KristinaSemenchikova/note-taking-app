@@ -9,7 +9,7 @@ function App() {
     <div className= {style.appWrapper}>
       <Header/>
       <Switch>
-      <Route path='/myNotes' render={() => <NotesPageContainer />} />
+      <Route path='/notes' render={() => <NotesPageContainer />} />
       </Switch>    
     </div>
   );

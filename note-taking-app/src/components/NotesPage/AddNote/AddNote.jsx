@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import style from "./AddNote.module.scss";
 import { TextArea, Button, TextInput } from "grommet";
 import { Edit} from "grommet-icons";
-import { guid } from "../../../redux/notes-reducer";
 
 const AddNote = ({save}) => {
   const [noteTitle, addTitle] = useState("");

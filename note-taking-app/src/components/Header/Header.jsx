@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <header className={style.appHeader}>
       <div>
-        <NavLink to="myNotes"><Notes size="large" color={color} /></NavLink>
+        <NavLink to="notes"><Notes size="large" color={color} /></NavLink>
         <NavLink to="settings"><UserSettings size="large" color={color} /></NavLink>
       </div>
       <Heading margin="none" color={color}>
