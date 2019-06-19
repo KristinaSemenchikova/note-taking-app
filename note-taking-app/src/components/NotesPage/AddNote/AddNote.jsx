@@ -3,6 +3,7 @@ import style from "./AddNote.module.scss";
 import { TextArea, Button, TextInput } from "grommet";
 import { Edit} from "grommet-icons";
 
+
 const AddNote = ({save}) => {
   const [noteTitle, addTitle] = useState("");
   const [noteText, addText] = useState("");
@@ -36,11 +37,13 @@ const AddNote = ({save}) => {
   }
     return (
       <div className={style.addingNoteArea}>
+        <span className = {style.text}>You can add some <span>#tags</span> for best search :) </span>
         <TextInput
           name="Title"
           value={noteTitle}
           placeholder="Note title"
           onChange={onChange}
+          maxLength = {15}
         />
         <TextArea
           name="Text"

@@ -3,10 +3,10 @@ import s from "./NotesPage.module.scss";
 import UsersNotes from "./UsersNotes/UsersNotes";
 import AddNote from "./AddNote/AddNote";
 import AddNoteButton from "./Button/Button";
-import Search from "./SearchField/Search";
+import SearchField from "./SearchField/Search";
 
 
-const NotesPage = ({ allUsersNotes, addNewNote, deleteNote, editNote }) => {
+const NotesPage = ({ allUsersNotes,hashTags, addNewNote, deleteNote, editNote }) => {
   const [add, onAddClick] = useState(false);
   let toggleModal = () => {
     onAddClick(!add);
@@ -14,7 +14,7 @@ const NotesPage = ({ allUsersNotes, addNewNote, deleteNote, editNote }) => {
   return (
     <div className={s.notesPage}>
       <AddNoteButton onClick={toggleModal} />
-      <Search allUsersNotes = {allUsersNotes}/>
+      <SearchField hashTags = {hashTags} allUsersNotes = {allUsersNotes}/>
       {add && <AddNote save={addNewNote} />}
       <UsersNotes
         allUsersNotes={allUsersNotes}

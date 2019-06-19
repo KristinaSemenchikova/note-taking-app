@@ -7,20 +7,28 @@
 }
 
 .noteItem {
-    background: url(https://image.freepik.com/free-photo/abstract-white-color-canvas-wallpaper-textures-surface_74190-6385.jpg);
+    background: url(https://cdn.pixabay.com/photo/2017/07/13/16/16/paper-2500942_960_720.jpg);
     background-size: contain;
     width: 300px;
     height: 200px;
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     margin: 10px;
     span {
         font-weight: bold;
-        font-size: 28px;
-        color: #0fc5fc;
+        font-size: 23px;
+        color: #7D4CDB;
+        @media screen and (max-width: 668px) {
+            font-size: 15px;
+            }
+    }
+  @media screen and (max-width: 668px) {
+    width: 250px;
+    height: 100px;
+    font-size: 15px;
     }
 }
 
