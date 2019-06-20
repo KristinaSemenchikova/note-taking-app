@@ -5,8 +5,15 @@ import AddNote from "./AddNote/AddNote";
 import AddNoteButton from "./Button/Button";
 import SearchField from "./SearchField/Search";
 
-
-const NotesPage = ({ allUsersNotes,hashTags, addNewNote, deleteNote, editNote }) => {
+const NotesPage = ({
+  allUsersNotes,
+  hashTags,
+  tagFilter,
+  addNewNote,
+  deleteNote,
+  editNote,
+  setTagFilter
+}) => {
   const [add, onAddClick] = useState(false);
   let toggleModal = () => {
     onAddClick(!add);
@@ -14,7 +21,12 @@ const NotesPage = ({ allUsersNotes,hashTags, addNewNote, deleteNote, editNote })
   return (
     <div className={s.notesPage}>
       <AddNoteButton onClick={toggleModal} />
-      <SearchField hashTags = {hashTags} allUsersNotes = {allUsersNotes}/>
+      <SearchField
+        hashTags={hashTags}
+        allUsersNotes={allUsersNotes}
+        setTagFilter={setTagFilter}
+        tagFilter={tagFilter}
+      />
       {add && <AddNote save={addNewNote} />}
       <UsersNotes
         allUsersNotes={allUsersNotes}

@@ -1,0 +1,26 @@
+  .search {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .tagItem {
+    text-decoration: none;
+    font-weight: bolder;
+    color: #7D4CDB;
+    margin: 2px;
+  }
+
+  .tags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .active{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #0fc5fc;
+    margin: 2px;
+  }
+  span:hover {
+    cursor: pointer;
+  }

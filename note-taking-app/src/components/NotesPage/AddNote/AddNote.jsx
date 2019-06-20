@@ -37,7 +37,8 @@ const AddNote = ({save}) => {
   }
     return (
       <div className={style.addingNoteArea}>
-        <span className = {style.text}>You can add some <span>#tags</span> for best search :) </span>
+        <span className = {style.text}>You can add some 
+        <span>#tags</span> to title for best search :) </span>
         <TextInput
           name="Title"
           value={noteTitle}

@@ -1,12 +1,13 @@
 let initialState = {
   usersNotes: [{ id: 1, title: "My note", text: "Buy car" }],
   hashTags: [],
-  filter: ""
+  tagFilter: ""
 };
 
 const ADD_NOTE = "ADD_NOTE";
 const DELETE_NOTE = "DELETE_NOTE";
 const EDIT_NOTE = "EDIT_NOTE";
+const SET_TAG_FILTER = "SET_TAG_FILTER";
 
 export const addNewNote = note => ({
   type: ADD_NOTE,
@@ -20,6 +21,10 @@ export const editNote = note => ({
   type: EDIT_NOTE,
   note
 });
+export const setTagFilter = filter => ({
+  type: SET_TAG_FILTER,
+  filter
+});
 
 const notesReducer = (state = initialState, action) => {
   debugger
@@ -31,16 +36,12 @@ const notesReducer = (state = initialState, action) => {
         ...action.note
       };
       let titleTags = searchHashTag(action.note.title);
-      let textTags = searchHashTag(action.note.text);
       let stateCopy = {
         ...state,
         usersNotes: [...state.usersNotes, note]
       };
       if (titleTags !== null) {
-        stateCopy.hashTags = [ ...stateCopy.hashTags, ...titleTags ];
-      }
-      if (textTags !== null) {
-        stateCopy.hashTags = [ ...stateCopy.hashTags, ...textTags ];
+        stateCopy.hashTags = [...stateCopy.hashTags, ...titleTags];
       }
       return stateCopy;
     case DELETE_NOTE:
@@ -57,22 +58,17 @@ const notesReducer = (state = initialState, action) => {
         editedNote.title = action.note.title;
       }
       titleTags = searchHashTag(action.note.title);
-      textTags = searchHashTag(action.note.text);
       if (titleTags !== null) {
-        copy.hashTags = [ ...copy.hashTags, ...titleTags ];
-      }
-      if (textTags !== null) {
-        copy.hashTags = [ ...copy.hashTags, ...textTags ];
+        copy.hashTags = [...copy.hashTags, ...titleTags];
       }
       return copy;
+    case SET_TAG_FILTER:
+      return { ...state, tagFilter: action.filter };
     default:
       return state;
   }
 };
 export default notesReducer;
-
-export const allUsersNotes = state => state.notes.usersNotes;
-export const hashTags = state => state.notes.hashTags;
 
 export const guid = () => {
   function s4() {

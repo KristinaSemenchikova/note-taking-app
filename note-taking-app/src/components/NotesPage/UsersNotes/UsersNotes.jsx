@@ -31,11 +31,8 @@ const UsersNotes = ({ allUsersNotes, deleteNote , editNote}) => {
   let notesItems = allUsersNotes.map(item => (
     <div className={style.noteItem} key={item.id}>
       <div>
-        <Button onClick={onEditNote} id={item.id} data-title={item.title} icon={<FormEdit />} />
-        { searchHashTag (item.title) === null 
-        ? <span>{item.title}</span>
-        : <a id = {searchHashTag (item.title)[0]}>{item.title}</a>
-      }
+        <Button onClick={onEditNote} id={item.id} data-title={item.title} icon={<FormEdit />} />    
+        <span>{item.title}</span>     
         <Button onClick={onDelete} data-id={item.id} icon={<FormClose />} />
       </div>
       <div>{item.text}</div>

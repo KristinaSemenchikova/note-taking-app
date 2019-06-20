@@ -1,24 +1,44 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import {allUsersNotes,hashTags, addNewNote, deleteNote, editNote} from '../../redux/notes-reducer';
-import NotesPage from './NotesPage';
+import React from "react";
+import { connect } from "react-redux";
+import {
+  addNewNote,
+  deleteNote,
+  editNote,
+  setTagFilter
+} from "../../redux/notes-reducer";
+import { filteredNotes, hashTags, tagFilter } from "../../redux/selectors";
+import NotesPage from "./NotesPage";
 
-const NotesPageContainer = ({allUsersNotes,hashTags, addNewNote, deleteNote, editNote}) => {
+const NotesPageContainer = ({
+  allUsersNotes,
+  hashTags,
+  tagFilter,
+  addNewNote,
+  deleteNote,
+  editNote,
+  setTagFilter
+}) => {
   return (
     <NotesPage
-    allUsersNotes = {allUsersNotes}
-    addNewNote =  {addNewNote}
-    deleteNote = {deleteNote}
-    editNote = {editNote}
-    hashTags = {hashTags}
+      allUsersNotes={allUsersNotes}
+      addNewNote={addNewNote}
+      deleteNote={deleteNote}
+      editNote={editNote}
+      hashTags={hashTags}
+      tagFilter={tagFilter}
+      setTagFilter={setTagFilter}
     />
   );
 };
 
 const mapStateToProps = state => {
   return {
-    allUsersNotes : allUsersNotes(state),
-    hashTags : hashTags(state)
-  }
+    allUsersNotes: filteredNotes(state),
+    hashTags: hashTags(state),
+    tagFilter: tagFilter(state)
+  };
 };
-export default connect(mapStateToProps,{addNewNote,deleteNote , editNote}) (NotesPageContainer);
+export default connect(
+  mapStateToProps,
+  { addNewNote, deleteNote, editNote, setTagFilter }
+)(NotesPageContainer);
